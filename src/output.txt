@@ -1,0 +1,6 @@
+Opening yaml file
+Created Network
+Propagate labels, this can take a while
+Label propagation failed: 
+Unable to allocate 19.9 GiB for an array with shape (100000, 26688) and data type float64
+

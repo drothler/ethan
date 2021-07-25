@@ -1,0 +1,14 @@
+num_nodes: 10000
+avg_degree: 20
+p_reconnect: 0.5
+population_data_path: '../notebooks/population_data/'
+#education_data: 'population_data/unique_education_facilities_0_1.txt'
+education_data: '../notebooks/population_data/unique_education_facilities1pct.txt'
+#work_data: 'population_data/unique_work_facilities_0_1.txt'
+work_data: '../notebooks/population_data/unique_work_facilities_1pct.txt'
+#home_data: 'population_data/unique_home_facilities_0_1.txt'
+home_data: '../notebooks/population_data/unique_home_facilities1pct.txt'
+q_houesehold: 0.5
+q_family: 0.35
+q_partner: 0.05
+q_friend: 0.15
