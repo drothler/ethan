@@ -16,7 +16,7 @@ cdef bint contains(str string, str match):
             return True
     return False
 
-cdef bint get_binary_event(float32_t probability):
+cdef bint get_binary_event(np.float32_t probability):
     return probability > np.random.random()
 
 

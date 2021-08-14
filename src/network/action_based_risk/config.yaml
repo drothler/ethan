@@ -1,0 +1,4 @@
+dataset_creator:
+    network_folder: ./simulation_data/1_percent/v1/network/
+    mobility_folder: ./simulation_data/1_percent/v1/mobility/
+    disease_folder: ./simulation_data/1_percent/v1/disease/

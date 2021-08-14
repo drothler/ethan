@@ -1,7 +1,7 @@
 import xmltodict
 import sys
 import numpy as np
-
+#from memory_profiler import profile
 
 # @DavidDrothler
 # Loading long-term social graph data from xml file
@@ -38,6 +38,7 @@ class DataLoader:
         print("Getting ", count, " nodes from ", path)
         self.import_from_xml()
 
+    #@profile
     def import_from_xml(self):
         print(self.mode, self.count)
         with open(self.path) as graph:
@@ -53,7 +54,7 @@ class DataLoader:
                 print(self.mode)
                 data_list = list(self.data["graph"]["nodes"]['node'])
             self.data = np.array(data_list)
-            print("NP array: ", self.data)
+            #print("NP array: ", self.data)
             sys.stdout = original_stdout
 
     def parse_connection_type(self, connection_type):
@@ -78,6 +79,7 @@ class DataLoader:
     # i might consider creating a uniform 3d matrix with M_n = max(M_n) and D_m_n = max(D_m_n), which would create
     # a lot of zero entries, but could be computationally faster when using numpy
 
+    #@profile
     def prepare_data(self, dictionary):
         converted_nodes = list()
         node_info = list()
@@ -103,6 +105,8 @@ class DataLoader:
             val += types[i] * pow(10, i)
         return val
 
+
+    #@profile
     def prepare_numpy_data(self, nodes, node_info, facility_data):
         node_len = len(nodes)
         max_connections = 0
@@ -125,15 +129,19 @@ class DataLoader:
 
         # assuming we only have 3 types of attributes, work, edu and home :)
         facilities = (facility_data['institutions'].replace(' ', '')).split(',')
-        info_np = np.full([node_len, len(facilities)], fill_value=-1, dtype=np.uint64)
+        info_np = np.full([node_len, len(facilities)], fill_value=-1, dtype=np.uint32)
         #print(node_info)
         for node in range(node_len):
+            counter = 0
             for index, info in enumerate(node_info[node]):
                 #print(info)
                 fac_str, id_str = (info.replace('"', '')).split('_')
                 id_int = np.uint32(id_str)
                 fac_int = facilities.index(fac_str)
                 info_np[node][fac_int] = id_int
+                
+            
+            #print(info_np[node])
 
 
         return node_np, info_np

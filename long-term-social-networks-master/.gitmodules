@@ -1,0 +1,3 @@
+[submodule "simulation/netgan"]
+	path = simulation/netgan
+	url = https://github.com/danielzuegner/netgan.git
